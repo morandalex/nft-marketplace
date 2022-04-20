@@ -23,6 +23,78 @@ module.exports = withPWA({
           },
         ],
       },
+      {
+        source: '/nftmarketplace',
+        headers: [
+          {
+            key: 'Access-Control-Allow-Origin',
+            value: '*',
+          },
+          {
+            key: 'Access-Control-Allow-Methods',
+            value: 'GET',
+          },
+          
+          {
+            key: 'Access-Control-Allow-Headers',
+            value: 'X-Requested-With, content-type, Authorization',
+          },
+        ],
+      },
+      {
+        source: '/profile',
+        headers: [
+          {
+            key: 'Access-Control-Allow-Origin',
+            value: '*',
+          },
+          {
+            key: 'Access-Control-Allow-Methods',
+            value: 'GET',
+          },
+          
+          {
+            key: 'Access-Control-Allow-Headers',
+            value: 'X-Requested-With, content-type, Authorization',
+          },
+        ],
+      },
+      {
+        source: '/creatordashboard',
+        headers: [
+          {
+            key: 'Access-Control-Allow-Origin',
+            value: '*',
+          },
+          {
+            key: 'Access-Control-Allow-Methods',
+            value: 'GET',
+          },
+          
+          {
+            key: 'Access-Control-Allow-Headers',
+            value: 'X-Requested-With, content-type, Authorization',
+          },
+        ],
+      },
+      {
+        source: '/admin',
+        headers: [
+          {
+            key: 'Access-Control-Allow-Origin',
+            value: '*',
+          },
+          {
+            key: 'Access-Control-Allow-Methods',
+            value: 'GET',
+          },
+          
+          {
+            key: 'Access-Control-Allow-Headers',
+            value: 'X-Requested-With, content-type, Authorization',
+          },
+        ],
+      },
     ]
   },
   pwa: {
