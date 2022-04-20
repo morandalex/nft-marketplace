@@ -1,5 +1,5 @@
 import { RepeatIcon } from "@chakra-ui/icons";
-import { HStack, IconButton, Text, VStack } from "@chakra-ui/react";
+import { HStack, Heading, IconButton, Text, VStack } from "@chakra-ui/react";
 
 import { useWeb3React } from '@web3-react/core';
 import ProfileView from "components/custom/vProfile";
@@ -30,7 +30,9 @@ const ProfilePage = () => {
 
   return (
     <VStack>
-  
+    <Heading as="h1">
+       Connected user dashboard
+      </Heading>
 
       <ProfileView />
      

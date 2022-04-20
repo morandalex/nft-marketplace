@@ -1,9 +1,9 @@
-import { Button, Image, Box, HStack, Input, Text, VStack } from "@chakra-ui/react";
+import { Button, Link,Image, Box, HStack, Input, Text, VStack } from "@chakra-ui/react";
 import { BigNumber, utils } from "ethers";
 import ABIS from "../../hardhat_contracts.json";
 import React, { ChangeEvent, useCallback, useContext, useEffect, useState } from "react";
 import { Web3Context } from "../../contexts/Web3Provider";
-
+import { ExternalLinkIcon } from '@chakra-ui/icons'
 import NETWORKS from "../../core/networks";
 import { YourContract } from "../../contract-types/YourContract";
 import { useWeb3React } from '@web3-react/core';
@@ -101,23 +101,41 @@ const [selectedTokenId,setSelectedTokenId]=useState('');
           }
           catch (e: any) {if (e.data){ alert(e.message+'\n'+e.data.message)}else { alert(e.message)} }
           let price = utils.formatUnits(i.price.toString(), 'ether')
-
+          if (tokenUri.substr(0, 4) == 'http') {
           const item = await fetch(tokenUri)
             .then(response => response.json())
             .then(data => {
               let item = {
+                tokenUri,
                 price,
-                perc:i.perc,
+                perc: i.perc,
                 tokenId: i.tokenId.toNumber(),
-                creator:i.creator,
+                creator: i.creator,
                 seller: i.seller,
                 owner: i.owner,
                 image: data.image,
+                name:data.name,
+                description:data.description
               }
               return item
             });
 
           return item
+        }
+        else {
+          return {
+            tokenUri,
+            price,
+            perc: i.perc,
+            tokenId: i.tokenId.toNumber(),
+            creator: i.creator,
+            seller: i.seller,
+            owner: i.owner,
+            image: '',
+            name:'',
+            description:''
+          }
+        }
 
         }))
 
@@ -136,6 +154,9 @@ const [selectedTokenId,setSelectedTokenId]=useState('');
 
 
   return (
+    <>  <Text>Here you can see your NFTs. Buy some to see them listed.</Text>
+     <Text>You can decide to resell with a new price. </Text>
+     <Text>If the NFT is resold you earn the price that you setup minus the percentage decided by the creator.</Text>
     <VStack
       bg="spacelightalpha"
       p="8"
@@ -146,7 +167,7 @@ const [selectedTokenId,setSelectedTokenId]=useState('');
       {...others}
     >
 
-      <Text>Here you have your  nft</Text>
+    
       <VStack>
 
 
@@ -167,30 +188,39 @@ const [selectedTokenId,setSelectedTokenId]=useState('');
             nfts && nfts.map((item, i) => {
 
               return (<>
-                <Box
-                  p='2'
-                  m='2'
-                  border='1px' borderColor='gray.200'
-                  alignItems='center'
-                  justifyContent='center'
-                  display='flex'
-                  flexDirection='column'
-                  borderRadius='16'
-                >
-                  <Image
-                    src={item.image}
-                    h='100px'
-                  />
-                <Text textAlign='center'> Nft Id:{item.tokenId}</Text>
-                          <Text textAlign='center'> Price:{item.price}</Text>
-                          <Text textAlign='center'> Creator: {item.creator.substr(0, 6) + "..." + item.creator.substr(-4)}</Text>
-                          <Text textAlign='center'> PercToCreator: {item.perc.toString()}</Text>
-                          <Text textAlign='center'> Seller: {item.seller.substr(0, 6) + "..." + item.seller.substr(-4)}</Text>
-                          <Text textAlign='center'> Owner: {item.owner.substr(0, 6) + "..." + item.owner.substr(-4)}</Text>
-                 
-                  <Button onClick={()=>onOpenModalFun(item.tokenId)}>Sell</Button>
+               <Box
+                        w='300px'
+                          p='2'
+                          m='2'
+                          border='1px' borderColor='gray.200'
+                          alignItems='center'
+                          justifyContent='center'
+                          display='flex'
+                          flexDirection='column'
+                          borderRadius='16'
+                        >
 
-                </Box>
+                          <Image
+
+                            src={item && item.image}
+                            h='100px'
+                          />
+                             <Text mb='2' textAlign='center'><b> {item && item.name} </b></Text>
+                          <Text mb='3' textAlign='center'> {item && item.description}</Text>
+                          <Text textAlign='center'> Nft Id:{item && item.tokenId}</Text>
+                          <Text textAlign='center'> Price:{item && item.price}</Text>
+                          <Text textAlign='center'> Creator: {item && item.creator.substr(0, 6) + "..." + item.creator.substr(-4)}</Text>
+                          <Text textAlign='center'> PercToCreator: {item && item.perc.toString()}</Text>
+                          <Text textAlign='center'> Seller: {item && item.seller.substr(0, 6) + "..." + item.seller.substr(-4)}</Text>
+                          <Text textAlign='center'> Owner: {item && item.owner.substr(0, 6) + "..." + item.owner.substr(-4)}</Text>
+                         <HStack>
+
+                         <Button key={i} onClick={() => el.name && buyFun(item.tokenId, utils.parseEther(item.price))} >Buy</Button>
+                          <Link href={item.tokenUri} isExternal> See on ipfs<ExternalLinkIcon mx='2px' /></Link>
+
+                         </HStack>
+                          
+                        </Box>
 
 
               
@@ -232,6 +262,7 @@ const [selectedTokenId,setSelectedTokenId]=useState('');
       </VStack>
 
     </VStack>
+    </>
   );
 }
 export default ContractFields;

@@ -1,5 +1,5 @@
 import { RepeatIcon } from "@chakra-ui/icons";
-import { HStack, IconButton, Text, VStack } from "@chakra-ui/react";
+import { Heading, Box,HStack, IconButton, Text, VStack } from "@chakra-ui/react";
 
 import { useWeb3React } from '@web3-react/core';
 import ContractFields from "components/custom/ContractFields";
@@ -30,21 +30,29 @@ const Home = () => {
 
   return (
     <VStack>
-      <Text textStyle="h2">
-       All about contract functions
-      </Text>
-
-      <HStack>
-        <Text>Your Balance: {yourBalance}Ξ</Text>
-        <IconButton
-          onClick={getEthBalance}
-          aria-label="refresh"
-          icon={<RepeatIcon />}
-        />
-      </HStack>
+      <Heading as="h1">
+       Nft marketplace
+      </Heading>
 
       
-      <ContractFields />
+      <Text>
+        Built with @scaffold-moonshot-starter
+        </Text>
+     <Box
+     color='black'
+     textAlign='center'
+     >
+This nft marketplace is connected to  a contract that is able to manage 3 actors: the creators, the buyers, a contract owner.<br></br>
+The contract owner allows creators to mint NFT at a listing price cost.<br></br>
+The creators collects royalties on the sells of their NFTs.<br></br>
+The Buyers use the marketplace to buy NFTs.<br></br>
+If a buyer owns a NFTs can decide to resell it at the listing price cost.<br></br>
+Per each sell , we have the payment splitted between the creators and the NFT owner.<br></br>
+Click on page links on top to start using this dapp with rinkeby or mumbai testnets
+
+
+     </Box>
+      
     
     </VStack>
   );

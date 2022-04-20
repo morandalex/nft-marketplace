@@ -1,4 +1,4 @@
-import { Button, HStack, Input, Text, VStack } from "@chakra-ui/react";
+import { Button,Box, HStack, Input, Text, VStack } from "@chakra-ui/react";
 import ABIS from "../../hardhat_contracts.json";
 import { BigNumber, utils } from "ethers";
 import React, { ChangeEvent, useCallback, useContext, useEffect, useState } from "react";
@@ -120,26 +120,28 @@ function ContractFields({ ...others }: any) {
   }, [chainId, yourReadContract])
 
   return (
-    <VStack
-      bg="spacelightalpha"
-      p="8"
-      h="lg"
-      borderRadius="base"
-      spacing="4"
-      align="start"
-      {...others}
-    >
+    <> <Text textStyle="small">
+    Here you can setup admin operations
+  </Text>
+  <Box
+        p='4'
+        m='2'
+        display='flex'
+        flexDirection='column'
+        justifyContent='center'
+        alignItems='center'
+        textAlign='center'
 
-      <Text textStyle="small">
-        here you can setup admin operations
-      </Text>
+      >
+
+     
       <Text>Listing price:{' '} {listingPrice && utils.formatUnits(listingPrice, 'ether')}{' '}Ξ </Text>
 
       {abi &&
         abi.map((el: any) => {
           if (el.type === "function" && el.inputs?.length !== 0 && el.name == 'updateListingPrice') {
             return (
-              <HStack key={el.name}>
+              <HStack m='4' key={el.name}>
                 <Text>{el.name}</Text>
                 <NumberInput
                   defaultValue={0.01} precision={2} step={0.01}
@@ -153,7 +155,7 @@ function ContractFields({ ...others }: any) {
                     <NumberDecrementStepper />
                   </NumberInputStepper>
                 </NumberInput>
-                <Text>{priceInput.toString()}</Text>
+            
 
                 <Button onClick={() => updateListingPriceFun()}> Update</Button>
 
@@ -167,11 +169,11 @@ function ContractFields({ ...others }: any) {
         })}
 
 
-      <HStack>
+      <HStack m='4' p='2'>
         <Text>Withdraw ETh balance</Text>
         <Button onClick={() => withdraw()}> Withdraw</Button>
       </HStack>
-      <HStack>
+      <HStack m='4' p= '2'>
         <Text>Withdraw ERC20 balance</Text>
         <Button onClick={() => onOpen()}> Withdraw erc20</Button>
 
@@ -180,7 +182,11 @@ function ContractFields({ ...others }: any) {
 
 
 
-      <Modal isOpen={isOpen} onClose={onClose}>
+
+
+
+    </Box>
+    <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
 
@@ -202,9 +208,7 @@ function ContractFields({ ...others }: any) {
           </ModalFooter>
         </ModalContent>
       </Modal>
-
-
-    </VStack>
+    </>
   );
 }
 

@@ -1,5 +1,5 @@
 import { RepeatIcon } from "@chakra-ui/icons";
-import { HStack, IconButton, Text, VStack } from "@chakra-ui/react";
+import { HStack, Heading,IconButton, Text, VStack } from "@chakra-ui/react";
 
 import { useWeb3React } from '@web3-react/core';
 import AdminView from "components/custom/vAdmin";
@@ -30,9 +30,9 @@ const AdminPage = () => {
 
   return (
     <VStack>
-      <Text textStyle="h2">
-     Admin
-      </Text>
+       <Heading as="h1">
+      Contract owner dashboard
+      </Heading>
 
       <AdminView />
       

@@ -46,8 +46,8 @@ function CreateNft({ ...others }: any) {
   const [yourWriteContract, setYourWriteContract] = useState<YourContract>();
 
   const [fileUrl, setFileUrl] = useState('')
-  const [formInput, updateFormInput] = useState({ price: '0.01', perc:'1',name: '', description: '' })
-
+  const [formInput, updateFormInput] = useState({ price: '0.01', perc: '1', name: '', description: '' })
+  const [listingPrice, setListingPrice] = useState('');
 
   useEffect(() => {
     if (chainId && contracts) {
@@ -68,6 +68,33 @@ function CreateNft({ ...others }: any) {
     }
   }, [chainId, contracts]);
 
+  useEffect(() => {
+    if (chainId && yourReadContract) {
+      fetchListingPriceFun()
+
+
+    }
+  }, [chainId, yourReadContract])
+
+
+  async function fetchListingPriceFun() {
+    if (yourReadContract) {
+      try {
+        let res: any;
+        try {
+          res = await yourReadContract.getListingPrice();
+
+        }
+        catch (e: any) { if (e.data) { alert(e.message + '\n' + e.data.message) } else { alert(e.message) } }
+        //console.log(res)
+        setListingPrice(res.toString());
+
+      } catch (err: any) {
+        alert(err.message);
+      }
+    }
+  }
+  
   async function onChange(e: any) {
     const file = e.target.files[0]
     try {
@@ -84,7 +111,7 @@ function CreateNft({ ...others }: any) {
     }
   }
   async function uploadToIPFS() {
-    const { name, description, price ,perc} = formInput
+    const { name, description, price, perc } = formInput
     console.log(name, description, price, fileUrl)
     if (!name || !description || !price || !fileUrl || !perc) return
 
@@ -111,13 +138,13 @@ function CreateNft({ ...others }: any) {
         try {
 
 
-          let listingPrice = await yourReadContract.getListingPrice()
+          let l = await yourReadContract.getListingPrice()
 
-          const transaction = await yourWriteContract.createNft(url, utils.parseEther(formInput.price),formInput.perc, { value: listingPrice });
+          const transaction = await yourWriteContract.createNft(url, utils.parseEther(formInput.price), formInput.perc, { value: l});
           await transaction.wait();
           //await fetchMarketItemsFun()
         }
-        catch (e: any) {if (e.data){ alert(e.message+'\n'+e.data.message)}else { alert(e.message)} }
+        catch (e: any) { if (e.data) { alert(e.message + '\n' + e.data.message) } else { alert(e.message) } }
       }
     }
     else {
@@ -127,85 +154,100 @@ function CreateNft({ ...others }: any) {
 
   return (
     <>
-     <Text >
-        Creator dashboard
-      </Text>
-    <VStack
-      bg="spacelightalpha"
-      p="8"
-      h="lg"
-      borderRadius="base"
-      spacing="4"
-      align="center"
-      {...others}
-    >
+      <Text >Here you can mint and sell a NFT.</Text>
+      
 
-     
 
-      <Text>Set title and description</Text>
+      <Text>For each minting you have to pay the listing fee decided by the contract owner.</Text>
+      <Text>Listing price:{' '} {listingPrice && utils.formatUnits(listingPrice, 'ether')}{' '}Ξ </Text>
+      <Text>In order to mint NFTs, follow the procedure below.</Text>
 
-      <Input
-        placeholder="Asset Name"
-
-        onChange={e => updateFormInput({ ...formInput, name: e.target.value })}
-      />
-      <Textarea
-        placeholder="Asset Description"
-
-        onChange={e => updateFormInput({ ...formInput, description: e.target.value })}
-      />
-         <Text>Set a price between 0.01 and 20</Text>
-      <NumberInput
-        defaultValue={0.01}
-        precision={2}
-        step={0.01}
-        value={formInput.price}
-        //onChange={(e)=>  setPriceInput(e)}
-        min={0.01}
-        max={20}
-
-        onChange={e => updateFormInput({ ...formInput, price: e })}
+      <Box
+        p='4'
+        m='2'
+        display='flex'
+        flexDirection='column'
+        justifyContent='center'
+        alignItems='center'
+        textAlign='center'
+        border='1px'
+        borderRadius='16'
       >
-        <NumberInputField />
-        <NumberInputStepper>
-          <NumberIncrementStepper />
-          <NumberDecrementStepper />
-        </NumberInputStepper>
-      </NumberInput>
 
-      <Text>Set a percentage between 001 and 999</Text>
-      <NumberInput
-        defaultValue={1}
-        precision={0}
-        step={1}
-        value={formInput.perc}
-        //onChange={(e)=>  setPriceInput(e)}
-        min={1}
-        max={999}
+        <Text ><b>#Step1</b>: Set a name and a description for your NFT</Text>
 
-        onChange={e => updateFormInput({ ...formInput, perc: e })}
-      >
-        <NumberInputField />
-        <NumberInputStepper>
-          <NumberIncrementStepper />
-          <NumberDecrementStepper />
-        </NumberInputStepper>
-      </NumberInput>
-      <Text>Choose your amazing nft file</Text>
-      <Input
-        type="file"
-        name="Asset"
-        
-        onChange={onChange}
-      />
+        <Input
+          m='1'
+          placeholder="NFT Name"
+
+          onChange={e => updateFormInput({ ...formInput, name: e.target.value })}
+        />
+        <Textarea
+          m='1'
+          placeholder="nft Description"
+
+          onChange={e => updateFormInput({ ...formInput, description: e.target.value })}
+        />
+
+        <Text mt='5'><b>#Step2</b>: Set a price between 0.01 and 20</Text>
+
+        <NumberInput
+          defaultValue={0.01}
+          precision={2}
+          step={0.01}
+          value={formInput.price}
+          //onChange={(e)=>  setPriceInput(e)}
+          min={0.01}
+          max={20}
+
+          onChange={e => updateFormInput({ ...formInput, price: e })}
+        >
+          <NumberInputField />
+          <NumberInputStepper>
+            <NumberIncrementStepper />
+            <NumberDecrementStepper />
+          </NumberInputStepper>
+        </NumberInput>
+        <Text mt='5'><b>#Step3</b>: Set a percentage between 001 and 999. l </Text>
+        <Text>It represents the royalty paid to you each time there is a sel</Text>
+        <NumberInput
+          defaultValue={1}
+          precision={0}
+          step={1}
+          value={formInput.perc}
+          //onChange={(e)=>  setPriceInput(e)}
+          min={1}
+          max={999}
+
+          onChange={e => updateFormInput({ ...formInput, perc: e })}
+        >
+          <NumberInputField />
+          <NumberInputStepper>
+            <NumberIncrementStepper />
+            <NumberDecrementStepper />
+          </NumberInputStepper>
+        </NumberInput>
 
 
-    
+        <Text mt='5'><b>#Step4</b>:Choose your amazing nft file</Text>
+        <Input
+          p='1'
+          type="file"
+          name="Asset"
 
-    </VStack>
-      <Button  onClick={() => listNFTForSale()} >
-      Create NFT
-    </Button></>
+          onChange={onChange}
+        />
+
+
+
+
+
+        <Button mt='8' onClick={() => listNFTForSale()} >
+          Create NFT
+        </Button>
+      </Box>
+
+    </>
   );
 }
 export default CreateNft;
