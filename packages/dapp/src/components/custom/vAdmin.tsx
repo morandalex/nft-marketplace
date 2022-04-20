@@ -1,11 +1,11 @@
 import { Button, HStack, Input, Text, VStack } from "@chakra-ui/react";
-import ABIS from "@scaffold-eth/hardhat-ts/hardhat_contracts.json";
+import ABIS from "../../../../hardhat-ts/hardhat_contracts.json";
 import { BigNumber, utils } from "ethers";
 import React, { ChangeEvent, useCallback, useContext, useEffect, useState } from "react";
 import { Web3Context } from "../../contexts/Web3Provider";
 
 import NETWORKS from "../../core/networks";
-import { YourContract } from "@scaffold-eth/hardhat-ts/generated/contract-types/YourContract";
+import { YourContract } from "../../../../hardhat-ts/generated/contract-types/YourContract";
 import { useWeb3React } from '@web3-react/core';
 import {
   NumberInput,
