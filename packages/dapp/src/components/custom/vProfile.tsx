@@ -215,7 +215,7 @@ const [selectedTokenId,setSelectedTokenId]=useState('');
                           <Text textAlign='center'> Owner: {item && item.owner.substr(0, 6) + "..." + item.owner.substr(-4)}</Text>
                          <HStack>
 
-                         <Button key={i} onClick={() => el.name && buyFun(item.tokenId, utils.parseEther(item.price))} >Buy</Button>
+                         <Button onClick={()=>onOpenModalFun(item.tokenId)}>Resell</Button>
                           <Link href={item.tokenUri} isExternal> See on ipfs<ExternalLinkIcon mx='2px' /></Link>
 
                          </HStack>
