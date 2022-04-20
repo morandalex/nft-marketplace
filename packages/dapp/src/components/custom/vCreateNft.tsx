@@ -5,7 +5,7 @@ import React, { ChangeEvent, useCallback, useContext, useEffect, useState } from
 import { Web3Context } from "../../contexts/Web3Provider";
 
 import NETWORKS from "../../core/networks";
-import { YourContract } from "../../YourContract";
+import { YourContract } from "../../contract-types/YourContract";
 import { useWeb3React } from '@web3-react/core';
 import { create } from "ipfs-http-client";
 import {
