@@ -1,6 +1,5 @@
 import { extendTheme } from "@chakra-ui/react";
 
-import { customTheme } from "@moonshotcollective/ui";
 import { colors } from "./colors";
 import styles from "./styles";
 import layerStyles from "./layer-styles";
@@ -9,7 +8,7 @@ import { borderRadius } from "./default-values";
 import components from "./components";
 
 const myTheme = {
-  components: {
+  /*components: {
     ...components,
     Text: {
       baseStyle: {
@@ -27,12 +26,12 @@ const myTheme = {
   colors,
   fonts,
   styles,
-  layerStyles,
+  layerStyles,*/
 };
 
 const theme = extendTheme(
-  customTheme
-  // , myTheme
+  //customTheme
+    myTheme
 );
 
 export default theme;

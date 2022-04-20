@@ -1,5 +1,5 @@
 import { DeepPartial, Theme } from "@chakra-ui/react";
-import { colors as uiColors } from "@moonshotcollective/ui";
+
 
 /** extend additional color here */
 const myColors: DeepPartial<
@@ -60,6 +60,6 @@ const myColors: DeepPartial<
 };
 
 export const colors = {
-  ...uiColors,
-  //   ...myColors,
+//  ...uiColors,
+     ...myColors,
 };
