@@ -3,7 +3,7 @@ import { BigNumber, utils } from "ethers";
 import ABIS from "@scaffold-eth/hardhat-ts/hardhat_contracts.json";
 import React, { ChangeEvent, useCallback, useContext, useEffect, useState } from "react";
 import { Web3Context } from "../../contexts/Web3Provider";
-import useCustomColor from "../../core/hooks/useCustomColor";
+
 import NETWORKS from "../../core/networks";
 import { YourContract } from "@scaffold-eth/hardhat-ts/generated/contract-types/YourContract";
 import { useWeb3React } from '@web3-react/core';
@@ -30,7 +30,7 @@ function ContractFields({ ...others }: any) {
   const { chainId } = useWeb3React();
   const [abi, setAbi] = useState([]);
   const [marketItems, setMarketItems] = useState([]);
-  const { coloredText } = useCustomColor();
+
   const [fetchMyNFTs, setFetchMyNFTs] = useState([]);
   const [tokenURIInput, setTokenURIInput] = useState("");
   const [createNftInput, setCreateNftInput] = useState("");

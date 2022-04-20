@@ -17,7 +17,7 @@ import {
 } from "@chakra-ui/react";
 import NextLink from "next/link";
 import { useRouter } from "next/router";
-import useCustomColor from "../../core/hooks/useCustomColor";
+
 import ConnectButton from "../Buttons/ConnectButton";
 import ThemeToggle from "../Buttons/ThemeToggle";
 import NetworkSwitch from '../custom/NetworkSwitch';
@@ -25,7 +25,7 @@ import ScaffoldIcon from "../Icons/ScaffoldIcon";
 
 const LinkItem = ({ href, children, ...props }: any) => {
   const { pathname } = useRouter();
-  const { accentColor } = useCustomColor();
+
 
   let isActive = false;
   if (href === pathname) {
@@ -59,7 +59,7 @@ const LinkItems = () => {
 
 const Navbar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { accentColor } = useCustomColor();
+
 
   return (
     <Box as="nav" w="100%" top="0" zIndex={1}>
@@ -76,7 +76,7 @@ const Navbar = () => {
             <Link
               display={{ base: "none", md: "flex" }}
               fontWeight="bold"
-              color={accentColor}
+           
              // textTransform="uppercase"
               size="md"
             >

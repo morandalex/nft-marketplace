@@ -11,7 +11,7 @@ function useThemeColor() {
   const getOverBgColor = mode(colors.neutralLighter, colors.neutralDarker);
   const getHover2Color = mode(colors.neutralLight, colors.neutralDark);
   const getBorderColor = mode(colors.borderLight, colors.borderDark);
-  const getPrimaryColor = mode(colors.primary[500], colors.primary[200]);
+  const getPrimaryColor =mode(colors.neutralLighter, colors.neutralDarker);
 
   return {
     getTextColor,

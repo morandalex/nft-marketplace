@@ -6,16 +6,16 @@ const layerStyles = {
   "gradient-border": {
     p: "2px",
     borderRadius: borderRadius,
-    bgGradient: `linear(to-r, gray.300, ${colors.accentDark[500]}, ${colors.primary[500]})`,
+ 
   },
   "gradient-bg": {
-    bgGradient: `linear(to-r, gray.300, ${colors.accentDark[500]}, ${colors.primary[500]})`,
+  
     // _hover: {
     //   bgGradient: `linear(to-r, gray.300, ${colors.accentDark[500]}, ${colors.primary[500]})`,
     // },
   },
   "gradient-text": {
-    bgGradient: `linear(to-r, gray.300, ${colors.accentDark[500]}, ${colors.primary[500]})`,
+   
     bgClip: "text",
   },
   "solid-card": {
@@ -55,12 +55,12 @@ const layerStyles = {
     borderRadius: borderRadius,
     border: "1px solid",
     borderColor: colors.borderLight,
-    _hover: { bg: darken(colors.neutralLighter, 5) },
+    _hover: { },
     ".chakra-ui-dark &": {
       bg: colors.neutralDarker,
       border: "1px solid",
       borderColor: colors.borderDark,
-      _hover: { bg: lighten(colors.neutralDarker, 5) },
+      _hover: {  },
     },
   },
   "outline-hover2": {
@@ -68,20 +68,20 @@ const layerStyles = {
     border: "1px solid",
     borderRadius: borderRadius,
     borderColor: colors.borderLight,
-    _hover: { bg: darken(colors.neutralLighter, 5) },
+    _hover: { },
     ".chakra-ui-dark &": {
       borderColor: colors.borderDark,
-      _hover: { bg: lighten(colors.neutralDarker, 5) },
+      _hover: {  },
     },
   },
   "no-border-hover2": {
     p: "2rem",
     bg: colors.neutralLighter,
     borderRadius: borderRadius,
-    _hover: { bg: darken(colors.neutralLighter, 5) },
+    _hover: { },
     ".chakra-ui-dark &": {
       bg: colors.neutralDarker,
-      _hover: { bg: lighten(colors.neutralDarker, 5) },
+      _hover: {  },
     },
   },
 

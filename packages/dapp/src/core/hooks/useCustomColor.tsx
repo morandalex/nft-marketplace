@@ -1,7 +1,7 @@
 import { useColorModeValue } from "@chakra-ui/react";
 import { colors } from "../../styles/customTheme/colors";
 
-function useCustomColor() {
+function useCustomColor() {/*
   const primaryColor = useColorModeValue(
     colors.primary[500],
     colors.primary[200]
@@ -13,7 +13,7 @@ function useCustomColor() {
   const accentColor = useColorModeValue(
     colors.accentLight[500],
     colors.accentDark[500]
-  );
+  );*/
   const coloredText = useColorModeValue(
     colors.neutralDark,
     colors.neutralLight
@@ -29,9 +29,9 @@ function useCustomColor() {
     colors.neutralDarkest
   );
   return {
-    primaryColor,
+   /* primaryColor,
     getOverBgColor,
-    accentColor,
+    accentColor,*/
     coloredText,
     accentColorScheme,
     getTextColor,

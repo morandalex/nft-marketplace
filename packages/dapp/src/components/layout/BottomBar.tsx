@@ -20,13 +20,13 @@ import {
   FaTwitter,
 } from "react-icons/fa";
 import { HiDotsVertical, HiHome, HiBriefcase, HiCube } from "react-icons/hi";
-import useCustomColor from "../../core/hooks/useCustomColor";
+
 import { useRouter } from "next/router";
 import NextLink from "next/link";
 
 const NavItem = ({ href, children, icon, ...props }: any) => {
   const { pathname } = useRouter();
-  const { primaryColor } = useCustomColor();
+
 
   let isActive = false;
   if (href === pathname) {
@@ -40,7 +40,7 @@ const NavItem = ({ href, children, icon, ...props }: any) => {
           <Icon
             w="full"
             borderRadius="md"
-            bg={isActive ? primaryColor : ""}
+          
             as={icon}
             {...props}
           />
@@ -52,7 +52,7 @@ const NavItem = ({ href, children, icon, ...props }: any) => {
 };
 
 function BottomBar() {
-  const { getOverBgColor, primaryColor } = useCustomColor();
+
   return (
     <Box
       display={{ base: "flex", md: "none" }}
@@ -62,8 +62,8 @@ function BottomBar() {
       position="fixed"
       zIndex="sticky"
       borderTopWidth="1px"
-      borderTopColor={primaryColor}
-      bg={getOverBgColor}
+  
+      
     >
       <HStack w="full" px="4" justify="space-between">
         <HStack w="full" spacing="8" display={{ base: "flex", md: "none" }}>

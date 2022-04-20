@@ -34,15 +34,15 @@ const baseStyleItem: SystemStyleFunction = (props) => {
     transitionTimingFunction: "ease-in",
     borderRadius: borderRadius,
     _focus: {
-      bg: mode(colors.primary[500], colors.primary[200])(props),
+     
       color: mode(colors.neutralLightest, colors.neutralDarkest)(props),
     },
     _active: {
-      bg: mode(colors.primary[500], colors.primary[200])(props),
+    
       color: mode(colors.neutralLightest, colors.neutralDarkest)(props),
     },
     _expanded: {
-      bg: mode(colors.primary[500], colors.primary[200])(props),
+    
       color: mode(colors.neutralLightest, colors.neutralDarkest)(props),
     },
     _disabled: {
