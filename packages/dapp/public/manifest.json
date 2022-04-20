@@ -1,0 +1,15 @@
+{
+  "short_name": "sms",
+  "name": "Nft Marketplace",
+  "description": "This is a nft marketplace",
+  "iconPath": "vercel.svg",
+  "lang": "en",
+  "start_url": "/",
+  "background_color": "#FFFFFF",
+  "theme_color": "#FFFFFF",
+  "dir": "ltr",
+  "display": "standalone",
+  "orientation": "portrait",
+  "prefer_related_applications": false
+}
+

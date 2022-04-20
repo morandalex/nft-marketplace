@@ -1,0 +1,40 @@
+{
+  "name": "@scaffold-eth/scaffold-moonshot-starter",
+  "license": "GPL-3.0-or-later",
+  "devDependencies": {
+    "lerna": "^4.0.0"
+  },
+  "private":true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "bootstrap": "yarn install; lerna bootstrap;",
+    
+    "start": "lerna run start --parallel",
+    
+    "uiBuild": "yarn workspace @scaffold-eth/ui build",
+    "uiStorybook": "yarn workspace @scaffold-eth/ui storybook",
+
+    "dpDev": "yarn workspace @scaffold-eth/dapp-app dev -p 5500",
+    "wbDev": "yarn workspace @scaffold-eth/web dev -p 8080",
+
+    "hhChain": "yarn workspace @scaffold-eth/hardhat-ts chain",
+    "hhCompile": "yarn workspace @scaffold-eth/hardhat-ts compile",
+    "hhDeploy": "yarn workspace @scaffold-eth/hardhat-ts deploy",
+
+    "hhAccounts": "yarn workspace @scaffold-eth/hardhat-ts accounts",
+    "hhHelp": "yarn workspace @scaffold-eth/hardhat-ts help", 
+    "hhGenerate": "yarn workspace @scaffold-eth/hardhat-ts generate",
+
+    "remix":"eval $(grep '^REMIX_ABSOLUTE_PATH' .env) && remixd -s $REMIX_ABSOLUTE_PATH --remix-ide https://remix.ethereum.org",
+    
+    "surge" :"yarn workspace @scaffold-eth/dapp-app surge ",
+
+  
+    "dpBuild": "yarn workspace @scaffold-eth/dapp-app build ",
+    "storybook":"yarn workspace @scaffold-eth/ui storybook",
+
+    "dpExport":"yarn workspace @scaffold-eth/dapp-app export"
+  }
+}
