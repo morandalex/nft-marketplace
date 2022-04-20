@@ -15,10 +15,7 @@
     "format": "prettier --write src",
     "up-latest": "yarn upgrade-interactive --latest",
     "release": "standard-version",
-    "push-release": "git push --follow-tags origin main",
-    "prepare": "husky install",
-    "surge":"surge out/",
-    "surgeList":"surge list"
+    "push-release": "git push --follow-tags origin main"
   },
   "dependencies": {
     "@apollo/client": "^3.4.17",
